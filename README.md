@@ -8,6 +8,13 @@ The dataset used for this project is `shreyaspullehf/emotion_dataset_100k`, load
 
 A bar chart visualization of the training set reveals the distribution across 10 emotion categories. The class distribution is nearly uniform, with each emotion containing approximately 7,940 to 7,997 samples. The minimal difference between the smallest and largest class indicates that the dataset has no significant class imbalance. Despite this balanced distribution, weighted evaluation metrics are still used to ensure robust performance assessment.
 
+## Assumptions
+
+- The provided emotion labels are correctly annotated and representative of true emotional intent.
+- The pretrained BERT model is capable of capturing contextual and semantic information necessary for emotion classification.
+- Given the near-uniform class distribution, additional class-balancing techniques were not required.
+- Validation accuracy is considered a reliable metric for selecting the optimal number of training epochs.
+
 ## Model Fine-tuning
 
 The model architecture consists of a pretrained `bert-base-uncased` encoder followed by a dropout layer (0.3) and a fully connected linear classification layer that maps to the 10 emotion classes. Fine-tuning is implemented manually using PyTorch without relying on the Hugging Face Trainer API.
@@ -37,6 +44,13 @@ The model achieved the following results on the test set:
 These results indicate strong generalization performance with minimal overfitting.
 
 A confusion matrix is generated and visualized as a heatmap to provide detailed insight into the model's class-level performance. The matrix reveals which emotion categories are correctly classified and identifies any systematic confusion patterns between specific emotion pairs.
+
+## Observations
+
+- Validation accuracy increased steadily across epochs, indicating stable learning.
+- The model achieved strong generalization performance with minimal performance drop between validation and test sets.
+- The confusion matrix shows high correct classification rates across all emotion categories.
+- Fine-tuning a pretrained BERT model is highly effective for multi-class emotion classification on short-text data.
 
 ## Inference Pipeline
 
